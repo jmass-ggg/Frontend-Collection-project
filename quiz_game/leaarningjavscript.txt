@@ -1,0 +1,852 @@
+JavaScript Documentation for the Quiz Project
+
+The quiz JavaScript has five main responsibilities:
+
+Find the HTML elements.
+Store the quiz questions.
+Keep track of the quiz state.
+Respond to button clicks.
+Change what the user sees.
+1. Selecting HTML elements
+
+JavaScript uses document.getElementById() to access elements from the HTML.
+
+const startScreen = document.getElementById("start-screen");
+const quizScreen = document.getElementById("quiz-screen");
+const resultScreen = document.getElementById("result-screen");
+
+const startBtn = document.getElementById("start-btn");
+const restartBtn = document.getElementById("restart-btn");
+
+For example:
+
+<button id="start-btn">Start Quiz</button>
+
+JavaScript can select that button with:
+
+const startBtn = document.getElementById("start-btn");
+
+After selecting it, JavaScript can:
+
+Change its text.
+Add click events.
+Add or remove CSS classes.
+Hide or display it.
+
+More quiz elements:
+
+const questionText = document.getElementById("question-text");
+const currentQuestionSpan = document.getElementById("current-question");
+const totalQuestionSpan = document.getElementById("total-question");
+
+const scoreSpan = document.getElementById("score");
+const answersContainer = document.getElementById("answers-container");
+const progress = document.getElementById("progress");
+
+const finalScore = document.getElementById("final-score");
+const maxScore = document.getElementById("max-score");
+const resultMessage = document.getElementById("result-message");
+
+Use clear variable names such as scoreSpan instead of score. This prevents confusion between the HTML score element and the numeric score value.
+
+2. Storing quiz questions
+
+The questions are stored inside an array.
+
+const quizQuestions = [
+    {
+        question: "What is the capital of Nepal?",
+        answers: [
+            { text: "Pokhara", correct: false },
+            { text: "Lumbini", correct: false },
+            { text: "Kathmandu", correct: true },
+            { text: "Sailung", correct: false }
+        ]
+    }
+];
+Understanding the structure
+
+quizQuestions is an array:
+
+const quizQuestions = [];
+
+Each item in the array is a question object:
+
+{
+    question: "What is the capital of Nepal?",
+    answers: []
+}
+
+Each answer is also an object:
+
+{
+    text: "Kathmandu",
+    correct: true
+}
+
+The correct property tells JavaScript whether an answer is right or wrong.
+
+You can access the first question with:
+
+quizQuestions[0];
+
+You can access its question text with:
+
+quizQuestions[0].question;
+
+You can access its answers with:
+
+quizQuestions[0].answers;
+
+You can access the first answer with:
+
+quizQuestions[0].answers[0];
+3. Quiz state variables
+
+State means information that changes while the quiz is running.
+
+let currentQuestionIndex = 0;
+let currentScore = 0;
+let answersDisabled = false;
+currentQuestionIndex
+
+This stores the position of the current question.
+
+let currentQuestionIndex = 0;
+
+Arrays begin at index 0.
+
+quizQuestions[0]; // first question
+quizQuestions[1]; // second question
+quizQuestions[2]; // third question
+
+After the user answers a question, increase the index:
+
+currentQuestionIndex++;
+
+This is the same as:
+
+currentQuestionIndex = currentQuestionIndex + 1;
+currentScore
+
+This stores the number of correct answers.
+
+let currentScore = 0;
+
+When the user selects a correct answer:
+
+currentScore++;
+
+Then update the page:
+
+scoreSpan.textContent = currentScore;
+answersDisabled
+
+This prevents the user from clicking several answers for the same question.
+
+let answersDisabled = false;
+
+Before the user answers:
+
+answersDisabled = false;
+
+After the user clicks an answer:
+
+answersDisabled = true;
+
+Then check it at the beginning of the answer function:
+
+if (answersDisabled) {
+    return;
+}
+
+return stops the function immediately.
+
+4. Setting the total number of questions
+
+The .length property returns the number of items in an array.
+
+quizQuestions.length;
+
+Display the total number of questions:
+
+totalQuestionSpan.textContent = quizQuestions.length;
+maxScore.textContent = quizQuestions.length;
+
+If there are four questions, both values become 4.
+
+5. Adding button events
+
+An event listener runs a function when something happens.
+
+startBtn.addEventListener("click", startQuiz);
+restartBtn.addEventListener("click", restartQuiz);
+
+This means:
+
+Run startQuiz() when the start button is clicked.
+Run restartQuiz() when the restart button is clicked.
+
+Do not write:
+
+startBtn.addEventListener("click", startQuiz());
+
+That would call the function immediately.
+
+Correct:
+
+startBtn.addEventListener("click", startQuiz);
+6. Starting the quiz
+
+The start function resets the quiz and changes the visible screen.
+
+function startQuiz() {
+    currentQuestionIndex = 0;
+    currentScore = 0;
+    answersDisabled = false;
+
+    scoreSpan.textContent = currentScore;
+
+    startScreen.classList.remove("active");
+    resultScreen.classList.remove("active");
+    quizScreen.classList.add("active");
+
+    showQuestion();
+}
+Resetting the values
+currentQuestionIndex = 0;
+currentScore = 0;
+answersDisabled = false;
+
+This makes sure the quiz always starts from the beginning.
+
+Changing screens
+
+Your CSS contains:
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+Therefore:
+
+startScreen.classList.remove("active");
+
+hides the start screen.
+
+quizScreen.classList.add("active");
+
+shows the quiz screen.
+
+Showing the first question
+showQuestion();
+
+This calls another function responsible for displaying the current question.
+
+7. Showing a question
+
+The showQuestion() function reads one question from the array and displays it.
+
+function showQuestion() {
+    answersDisabled = false;
+
+    const currentQuestion = quizQuestions[currentQuestionIndex];
+
+    currentQuestionSpan.textContent = currentQuestionIndex + 1;
+    questionText.textContent = currentQuestion.question;
+
+    answersContainer.innerHTML = "";
+
+    currentQuestion.answers.forEach((answer) => {
+        createAnswerButton(answer);
+    });
+}
+Getting the current question
+const currentQuestion = quizQuestions[currentQuestionIndex];
+
+When currentQuestionIndex is 0, this gets the first question.
+
+When it is 1, it gets the second question.
+
+Displaying the question number
+currentQuestionSpan.textContent = currentQuestionIndex + 1;
+
+The index begins at 0, but users expect question numbers to begin at 1.
+
+Therefore:
+
+0 + 1 = 1
+1 + 1 = 2
+2 + 1 = 3
+Displaying the question text
+questionText.textContent = currentQuestion.question;
+
+.textContent changes the text inside an HTML element.
+
+For example:
+
+<h2 id="question-text"></h2>
+
+After JavaScript runs:
+
+questionText.textContent = "What is the capital of Nepal?";
+
+the HTML displays that question.
+
+Removing old answer buttons
+answersContainer.innerHTML = "";
+
+This removes the answer buttons from the previous question.
+
+Without this line, new answers would be added below the previous answers.
+
+8. Looping through the answers
+
+The .forEach() method runs code for every item in an array.
+
+currentQuestion.answers.forEach((answer) => {
+    console.log(answer.text);
+});
+
+For four answers, the callback runs four times.
+
+Inside the loop, answer represents one answer object:
+
+{
+    text: "Kathmandu",
+    correct: true
+}
+9. Creating answer buttons
+
+Buttons can be created with JavaScript.
+
+const button = document.createElement("button");
+
+This creates:
+
+<button></button>
+
+Add the answer text:
+
+button.textContent = answer.text;
+
+Add a CSS class:
+
+button.classList.add("answer-btn");
+
+Store whether the answer is correct:
+
+button.dataset.correct = answer.correct;
+
+Add a click event:
+
+button.addEventListener("click", selectAnswer);
+
+Place the button inside the answers container:
+
+answersContainer.appendChild(button);
+
+A complete helper function could look like this:
+
+function createAnswerButton(answer) {
+    const button = document.createElement("button");
+
+    button.textContent = answer.text;
+    button.classList.add("answer-btn");
+    button.dataset.correct = answer.correct;
+
+    button.addEventListener("click", selectAnswer);
+
+    answersContainer.appendChild(button);
+}
+
+Then use it inside showQuestion():
+
+currentQuestion.answers.forEach((answer) => {
+    createAnswerButton(answer);
+});
+10. Understanding dataset
+
+The following code:
+
+button.dataset.correct = answer.correct;
+
+creates a custom HTML data attribute.
+
+The generated button may look like:
+
+<button class="answer-btn" data-correct="true">
+    Kathmandu
+</button>
+
+Important: values stored in HTML datasets become strings.
+
+So use:
+
+const isCorrect = button.dataset.correct === "true";
+
+Not:
+
+const isCorrect = button.dataset.correct === true;
+
+The first compares with the string "true".
+
+11. Selecting an answer
+
+The answer function receives the event object.
+
+function selectAnswer(event) {
+    const selectedButton = event.currentTarget;
+}
+
+Use the event parameter explicitly.
+
+Avoid depending on a global event:
+
+function selectAnswer() {
+    const selectedButton = event.target;
+}
+
+The safer version is:
+
+function selectAnswer(event) {
+    const selectedButton = event.currentTarget;
+}
+event.target and event.currentTarget
+
+event.target is the exact element that was clicked.
+
+event.currentTarget is the element that owns the event listener.
+
+For answer buttons, event.currentTarget is usually clearer.
+
+Preventing multiple clicks
+if (answersDisabled) {
+    return;
+}
+
+answersDisabled = true;
+
+The first click changes answersDisabled to true.
+
+Any later click immediately stops because of return.
+
+Checking the selected answer
+const isCorrect =
+    selectedButton.dataset.correct === "true";
+
+Then:
+
+if (isCorrect) {
+    currentScore++;
+    scoreSpan.textContent = currentScore;
+}
+12. Adding correct and incorrect styles
+
+Your CSS has classes such as:
+
+.answer-btn.correct {
+    border-color: green;
+}
+
+.answer-btn.incorrect {
+    border-color: red;
+}
+
+JavaScript applies these classes.
+
+if (isCorrect) {
+    selectedButton.classList.add("correct");
+} else {
+    selectedButton.classList.add("incorrect");
+}
+
+The browser automatically applies the matching CSS.
+
+13. Showing the correct answer
+
+After the user selects an answer, loop through every answer button:
+
+const answerButtons =
+    answersContainer.querySelectorAll(".answer-btn");
+
+querySelectorAll() returns all matching elements.
+
+Then inspect every button:
+
+answerButtons.forEach((button) => {
+    if (button.dataset.correct === "true") {
+        button.classList.add("correct");
+    }
+});
+
+This displays the correct answer even when the user selected the wrong one.
+
+14. Disabling answer buttons
+
+You can disable every button after one answer is selected.
+
+answerButtons.forEach((button) => {
+    button.disabled = true;
+});
+
+A disabled button cannot be clicked.
+
+You can combine the logic:
+
+answerButtons.forEach((button) => {
+    button.disabled = true;
+
+    if (button.dataset.correct === "true") {
+        button.classList.add("correct");
+    }
+});
+15. Updating the progress bar
+
+The progress bar width is controlled with a percentage.
+
+const progressPercent =
+    ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
+
+For four questions:
+
+Question 1: 1 / 4 × 100 = 25%
+Question 2: 2 / 4 × 100 = 50%
+Question 3: 3 / 4 × 100 = 75%
+Question 4: 4 / 4 × 100 = 100%
+
+Apply it to the CSS width:
+
+progress.style.width = `${progressPercent}%`;
+
+A template literal uses backticks:
+
+`${progressPercent}%`
+
+It combines a value with text.
+
+16. Waiting before showing the next question
+
+Use setTimeout() to wait before changing questions.
+
+setTimeout(() => {
+    currentQuestionIndex++;
+}, 1000);
+
+1000 milliseconds equals one second.
+
+Inside the timeout:
+
+setTimeout(() => {
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex < quizQuestions.length) {
+        showQuestion();
+    } else {
+        showResult();
+    }
+}, 1000);
+
+This checks whether more questions remain.
+
+17. Checking whether the quiz is finished
+if (currentQuestionIndex < quizQuestions.length) {
+    showQuestion();
+} else {
+    showResult();
+}
+
+Suppose there are four questions.
+
+Valid indexes are:
+
+0, 1, 2, 3
+
+When the index becomes 4, there is no question at that position.
+
+Therefore, the result screen should be displayed.
+
+18. Showing the result screen
+function showResult() {
+    quizScreen.classList.remove("active");
+    resultScreen.classList.add("active");
+
+    finalScore.textContent = currentScore;
+    maxScore.textContent = quizQuestions.length;
+}
+
+The quiz screen is hidden, and the result screen is shown.
+
+Important HTML structure:
+
+<div id="quiz-screen" class="screen">
+    <!-- Quiz content -->
+</div>
+
+<div id="result-screen" class="screen">
+    <!-- Result content -->
+</div>
+
+The result screen should not be placed inside the quiz screen.
+
+19. Calculating the result percentage
+const percentage =
+    (currentScore / quizQuestions.length) * 100;
+
+For example, if the user gets three out of four:
+
+3 / 4 × 100 = 75%
+
+Then select a result message:
+
+if (percentage === 100) {
+    resultMessage.textContent = "Perfect score!";
+} else if (percentage >= 75) {
+    resultMessage.textContent = "Excellent work!";
+} else if (percentage >= 50) {
+    resultMessage.textContent = "Good job!";
+} else {
+    resultMessage.textContent = "Keep studying!";
+}
+
+JavaScript checks conditions from top to bottom.
+
+20. Restarting the quiz
+
+There are two common restart styles.
+
+Return to the start screen
+function restartQuiz() {
+    resultScreen.classList.remove("active");
+    startScreen.classList.add("active");
+
+    currentQuestionIndex = 0;
+    currentScore = 0;
+    answersDisabled = false;
+
+    scoreSpan.textContent = "0";
+    progress.style.width = "0%";
+    answersContainer.innerHTML = "";
+}
+Immediately start a new quiz
+function restartQuiz() {
+    resultScreen.classList.remove("active");
+    startQuiz();
+}
+
+Both approaches are valid. The choice depends on how you want the application to behave.
+
+Complete program flow
+
+The application follows this sequence:
+
+Page loads
+    ↓
+Start screen is visible
+    ↓
+User clicks Start Quiz
+    ↓
+startQuiz() runs
+    ↓
+showQuestion() displays the first question
+    ↓
+User clicks an answer
+    ↓
+selectAnswer() checks the answer
+    ↓
+Score and styles are updated
+    ↓
+Wait one second
+    ↓
+Display the next question
+    ↓
+After the final question
+    ↓
+showResult() displays the final score
+    ↓
+User clicks Restart
+    ↓
+restartQuiz() resets the application
+Pseudocode for writing your own version
+
+Before writing JavaScript, plan the logic in normal English:
+
+Create an array of questions
+
+Create variables for:
+- current question position
+- score
+- whether answers are disabled
+
+When Start is clicked:
+- reset the score
+- reset the question position
+- hide the start screen
+- show the quiz screen
+- display the current question
+
+To display a question:
+- get the question from the array
+- display its text
+- remove old answer buttons
+- create one button for every answer
+
+When an answer is clicked:
+- stop multiple clicks
+- check whether it is correct
+- increase the score if correct
+- style the selected answer
+- show the correct answer
+- disable all buttons
+- update the progress bar
+- wait
+- move to the next question
+
+After the final question:
+- hide the quiz screen
+- show the result screen
+- display the final score
+- display a result message
+
+When Restart is clicked:
+- reset all values
+- show the start screen
+Practice skeleton
+
+Use this structure to write the logic yourself:
+
+// 1. Select HTML elements
+const startScreen = document.getElementById("start-screen");
+const quizScreen = document.getElementById("quiz-screen");
+const resultScreen = document.getElementById("result-screen");
+
+// Select the remaining elements here.
+
+// 2. Store quiz questions
+const quizQuestions = [
+    // Add question objects here.
+];
+
+// 3. Create state variables
+let currentQuestionIndex = 0;
+let currentScore = 0;
+let answersDisabled = false;
+
+// 4. Add event listeners
+startBtn.addEventListener("click", startQuiz);
+restartBtn.addEventListener("click", restartQuiz);
+
+// 5. Start quiz
+function startQuiz() {
+    // Reset values.
+    // Change screens.
+    // Call showQuestion().
+}
+
+// 6. Show current question
+function showQuestion() {
+    // Get current question.
+    // Display question number.
+    // Display question text.
+    // Remove old buttons.
+    // Create answer buttons.
+}
+
+// 7. Handle an answer
+function selectAnswer(event) {
+    // Prevent multiple clicks.
+    // Get selected button.
+    // Check whether it is correct.
+    // Update score.
+    // Add correct or incorrect styles.
+    // Disable buttons.
+    // Update progress.
+    // Move to next question.
+}
+
+// 8. Show results
+function showResult() {
+    // Hide quiz.
+    // Show result.
+    // Display score.
+    // Display message.
+}
+
+// 9. Restart
+function restartQuiz() {
+    // Reset state.
+    // Change screens.
+}
+Common mistakes to avoid
+Using the same name for an element and a function
+
+Incorrect:
+
+const startBtn = document.getElementById("start-btn");
+
+function startBtn() {
+}
+
+Correct:
+
+const startBtn = document.getElementById("start-btn");
+
+function startQuiz() {
+}
+Using currentElement
+
+Incorrect:
+
+document.currentElement("button");
+
+Correct:
+
+document.createElement("button");
+Forgetting the function parameter
+
+Incorrect:
+
+function selectAnswer() {
+    const button = event.target;
+}
+
+Correct:
+
+function selectAnswer(event) {
+    const button = event.currentTarget;
+}
+Confusing the question object with the question-number element
+
+Avoid names that are too similar.
+
+Better:
+
+const currentQuestionSpan =
+    document.getElementById("current-question");
+
+const question =
+    quizQuestions[currentQuestionIndex];
+Missing a question property
+
+Every quiz object should contain both question and answers.
+
+Incorrect:
+
+{
+    answers: [
+        { text: "Charles Babbage", correct: true }
+    ]
+}
+
+Correct:
+
+{
+    question: "Who is known as the father of the computer?",
+    answers: [
+        { text: "Charles Babbage", correct: true }
+    ]
+}
