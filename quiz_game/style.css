@@ -1,0 +1,151 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+    padding: 1rem;
+    font-family: sans-serif;
+}
+.container{
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgb(0,0,0,0.1);
+    width: 100%;
+    max-width: 600px;
+    overflow: hidden;
+    position: relative;
+
+}
+.screen{
+    /* display: none; */
+    padding: 2rem;
+    text-align: center;
+}
+.screen.active{
+    display: block;
+}
+#start-screen h1{
+    color: rgb(148, 123, 90);
+    margin-bottom: 20px;
+    font-size: 2.6rem;
+
+}
+#start-btn{
+    background-color: rgb(255, 165, 0);
+    border-radius: 14px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+}
+.quiz-header{
+margin-bottom: 2rem;
+
+}
+#question-text{
+    color: black ;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+
+}
+.quiz-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.quiz-info p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+.answers-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+.answer-btn{
+    background-color: rgb(197, 188, 188);
+    color: rgb(68, 63, 63);
+    border: 2px solid rgb(170, 163, 163);
+    border-radius: 10px;
+    padding: 1rem;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3 ease;
+
+}
+.answer-btn:hover{
+    background-color: rgb(165, 162, 162);
+    border-color: white;
+}
+.answer-btn.correct{
+    background-color: white;
+    border-color: rgb(142, 231, 142);
+    color: green;
+}
+.answer-btn.incorrect{
+    background-color: white;
+    border-color: rgb(227, 155, 155);
+    color: rgb(183, 42, 42);
+}
+.progres-bar{
+    height: 10px;
+    background-color: rgb(201, 192, 176);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 20px;
+
+}
+.progress{
+    height: 100%;
+    background-color: orange;
+    width: 0%;
+    transform: width 0.3s ease;
+}
+#result-screen h1{
+     color: rgb(200, 145, 73);
+    margin-bottom: 20px;
+    font-size: 2.6rem;
+}
+.result-info{
+    background-color: rgb(209, 225, 240);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.result-info p{
+    font-size: 1.3rem;
+    color: black;
+    margin-bottom: 20px;
+
+}
+#result-message{
+    color: orange;
+    font-weight: 600;
+    font-size: 2.4rem;
+}
+#restart-btn{
+     background-color: orange;
+    border-radius: 14px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    transition: all 0.3 ease;
+}
+#restart-btn:hover{
+    background-color: rgb(142, 91, 91);
+}
