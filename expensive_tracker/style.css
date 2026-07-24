@@ -87,3 +87,90 @@ body{
     font-size: 20px;
     font-weight: 800;
 }
+.main-content {
+    display: flex;
+    gap: 25px;
+    padding: 0 25px 28px;
+}
+
+.transaction-container,
+.form-container {
+    flex: 1;
+    min-width: 0;
+}
+
+.transaction-container h2,
+.form-container h2 {
+    margin-bottom: 18px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.transaction-container {
+    padding: 20px 0;
+}
+
+.form-container {
+    padding: 20px;
+    background-color: #f5f7fa;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #e2e5e9;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #38af73;
+    box-shadow: 0 0 0 3px rgba(56, 175, 115, 0.12);
+}
+
+.form-group small {
+    display: block;
+    margin-top: 6px;
+    color: #777;
+    font-size: 12px;
+}
+
+#transaction-form button {
+    width: 100%;
+    padding: 11px;
+    color: white;
+    background-color: #36b876;
+    border: none;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#transaction-form button:hover {
+    background-color: #299b61;
+}
+
+@media (max-width: 650px) {
+    .main-content {
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 15px 20px;
+    }
+}
