@@ -1,0 +1,131 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:aliceblue;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.container{
+    width:100%;
+    max-width:420px;
+    background:#fff;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+.container h2{
+    color:#2e8b57;
+    text-align:center;
+    margin-bottom:20px;
+    font-size:30px;
+}
+
+.texts{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.inputs{
+    width:100%;
+    padding:12px;
+    font-size:16px;
+    border:2px solid #ccc;
+    border-radius:8px;
+}
+
+
+
+.add-btn{
+    width:100%;
+    margin-top:20px;
+    padding:12px;
+    background:#2e8b57;
+    color:white;
+    font-size:16px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.add-btn:hover{
+    background:#256f46;
+}
+
+.result{
+    margin-top:25px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+.result{
+    margin-top: 20px;
+}
+#urls{
+    list-style:none;
+    display:flex;
+    flex-direction: column;
+    gap:15px;
+}
+.bookMark{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:14px 14px;
+
+    background:#f8fffb;
+
+    border-left:5px solid #2e8b57;
+    border-radius:10px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+
+   
+}
+.bookMark:hover{
+    
+    box-shadow:0 10px 20px rgba(0,0,0,0.12);
+}
+.bookMark a{
+    color: black;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight:600;
+
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+.bookMark a:hover{
+    color:#2e8b57;
+    text-decoration:underline;
+}
+
+.bookMark button{
+    width:35px;
+    height:35px;
+
+    border:none;
+    border-radius:50%;
+
+    background:#ff4d4d;
+    color:white;
+
+    font-size:18px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}

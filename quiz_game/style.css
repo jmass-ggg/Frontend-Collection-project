@@ -21,10 +21,8 @@ body{
     max-width: 600px;
     overflow: hidden;
     position: relative;
-
 }
 .screen{
-    
     padding: 2rem;
     text-align: center;
 }
