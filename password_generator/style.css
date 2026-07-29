@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Roboto',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#506796;
+}
+
+.container{
+
+    width:380px;
+    background:#fff;
+
+    padding:35px;
+    border-radius:20px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.18);
+
+}
+
+h2{
+
+    text-align:center;
+    color:#304b73;
+
+    margin-bottom:30px;
+    font-size:32px;
+}
+
+h2::after{
+
+ 
+
+    width:140px;
+    height:4px;
+
+    margin:10px auto;
+
+    background:#304b73;
+    border-radius:20px;
+}
+.password-container{
+    position: relative;
+    margin-bottom: 20px;
+
+}
+.password-container input{
+    width: 100%;
+    padding:15px 50px 15px 15px;
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    font-size:18px;
+
+    outline:none;
+}
+.password-container i{
+    position: absolute;
+    right: 18px;
+    top:50%;
+
+    transform:translateY(-50%);
+    color:#777;
+    font-size:20px;
+}
+.options{
+    margin-bottom: 20px;
+}
+.option{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:18px 0;
+}
+.option label{
+
+    color:#000000;
+}
+.range-container input{
+
+    width:140px;
+}
+#length-value{
+
+    width:35px;
+
+    background:#eee;
+
+    text-align:center;
+
+    padding:5px;
+
+    border-radius:5px;
+}
+button{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+    color:#fff;
+
+    background:linear-gradient(to right,#2f5b82,#4f4376);
+
+    transition:.3s;
+}
+button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
+}
+button i{
+
+    margin-right:8px;
+}
+.password-strength{
+
+    margin-top:25px;
+}
+
+.strength-text{
+
+    display:flex;
+    justify-content:space-between;
+
+    margin-bottom:10px;
+
+    color:#444;
+}
+.strength-meter{
+
+    width:100%;
+    height:8px;
+
+    background:#ddd;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+.strength-bar{
+
+    width:60%;
+
+    height:100%;
+
+    background:#f5b942;
+
+    border-radius:20px;
+}
