@@ -1,86 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Palette Generator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Color Palette Generator</h1>
 
-    <title>GRAV Burger Menu</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+      <button id="generate-btn">
+        <i class="fas fa-sync-alt"></i>
+        Generate Palette
+      </button>
 
-<body>
-    <header class="header">
-        <div class="logo">GRAV</div>
+      <div class="palette-container">
+        <!-- COLOR BOX 1 -->
+        <div class="color-box">
+          <div class="color" style="background-color: #e1f5fe"></div>
+          <div class="color-info">
+            <span class="hex-value">#E1F5FE</span>
+            <i class="far fa-copy copy-btn" title="Copy to clipboard"></i>
+          </div>
+        </div>
+        <!-- COLOR BOX 2 -->
+        <div class="color-box">
+          <div class="color" style="background-color: #b3e5fc"></div>
+          <div class="color-info">
+            <span class="hex-value">#B3E5FC</span>
+            <i class="far fa-copy copy-btn" title="Copy to clipboard"></i>
+          </div>
+        </div>
+        <!-- COLOR BOX 3 -->
+        <div class="color-box">
+          <div class="color" style="background-color: #81d4fa"></div>
+          <div class="color-info">
+            <span class="hex-value">#81D4FA</span>
+            <i class="far fa-copy copy-btn" title="Copy to clipboard"></i>
+          </div>
+        </div>
+        <!-- COLOR BOX 4 -->
+        <div class="color-box">
+          <div class="color" style="background-color: #4fc3f7"></div>
+          <div class="color-info">
+            <span class="hex-value">#4FC3F7</span>
+            <i class="far fa-copy copy-btn" title="Copy to clipboard"></i>
+          </div>
+        </div>
+        <!-- COLOR BOX 5 -->
+        <div class="color-box">
+          <div class="color" style="background-color: #29b6f6"></div>
+          <div class="color-info">
+            <span class="hex-value">#29B6F6</span>
+            <i class="far fa-copy copy-btn" title="Copy to clipboard"></i>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        <nav class="menu-bar">
-            <button class="burger-button">BURGERS</button>
-
-            <button class="menu-button">
-                MENU
-                <span class="menu-icon">☰</span>
-            </button>
-        </nav>
-    </header>
-
-    <main class="cards-container">
-
-        <article class="box">
-            <button class="add" aria-label="Add Classic Burger">+</button>
-
-            <div class="image-area">
-                <div class="checker-line"></div>
-
-                <img
-                    class="burger-photo"
-                    src="image.png"
-                    alt="Classic Burger"
-                >
-            </div>
-
-            <div class="burger-info">
-                <h2 class="name">Classic Burger</h2>
-                <span class="price">$16</span>
-            </div>
-        </article>
-
-        <article class="box">
-            <button class="add" aria-label="Add Spicy Jalapeño Burger">+</button>
-
-            <div class="image-area">
-                <div class="checker-line"></div>
-
-                <img
-                    class="burger-photo"
-                    src="image.png"
-                    alt="Spicy Jalapeño Burger"
-                >
-            </div>
-
-            <div class="burger-info">
-                <h2 class="name">Spicy Jalapeño Burger</h2>
-                <span class="price">$18</span>
-            </div>
-        </article>
-
-        <article class="box">
-            <button class="add" aria-label="Add Bacon Cheese Burger">+</button>
-
-            <div class="image-area">
-                <div class="checker-line"></div>
-
-                <img
-                    class="burger-photo"
-                    src="image.png"
-                    alt="Bacon Cheese Burger"
-                >
-            </div>
-
-            <div class="burger-info">
-                <h2 class="name">Bacon Cheese Burger</h2>
-                <span class="price">$21</span>
-            </div>
-        </article>
-
-    </main>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
