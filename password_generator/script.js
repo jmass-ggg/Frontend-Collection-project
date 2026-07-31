@@ -1,190 +1,119 @@
-const balanceCurrent = document.getElementById("balance");
-const incomeAmount = document.getElementById("income");
-const expenseAmount = document.getElementById("expense");
+const passwordInput = document.getElementById("password");
+const lengthSlider=document.getElementById("length");
+const lengthDisplay=document.getElementById("length-value");
+const uppercaseCheckBox=document.getElementById("uppercase");
+const lowercaseCheckBox=document.getElementById("lowercase");
+const numbersCheckBox=document.getElementById("numbers");
+const symbolsCheckBox=document.getElementById("symbols");
+const generateButton=document.getElementById("generate-btn");
+const strengthValue=document.getElementById("strength-value");
+const copyButton = document.getElementById("copy-btn");
 
-const transactionsList = document.getElementById("transaction-list");
-const transactionForm = document.getElementById("transaction-form");
-const descriptionEl = document.getElementById("description");
-const amountEl = document.getElementById("amount");
+const strengthLabel=document.getElementById("strength-value");
+const strengthText = document.querySelector(".strength-text span");
+const strengthBar = document.querySelector(".strength-bar");
 
+const uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
+const numberCharacters = "0123456789";
+const symbolCharacters = "!@#$%^&*()-_=+[]{}|;:,.<>?/";
 
-let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+lengthSlider.addEventListener("input",()=>{
+    lengthDisplay.textContent=lengthSlider.value;
+})
 
+generateButton.addEventListener("click",makePassword);
 
-transactionForm.addEventListener("submit", addTransaction);
+function makePassword(){
+    const length = Number(lengthSlider.value);
+    const includeUppercase = uppercaseCheckBox.checked;
+    const includeLowercase = lowercaseCheckBox.checked; 
+    const includeNumbers=numbersCheckBox.checked;
+    const includeSymbols=symbolsCheckBox.checked;
 
-function addTransaction(e) {
-    e.preventDefault();
-
-    const description = descriptionEl.value.trim();
-    const amount = parseFloat(amountEl.value);
-
-    if (description === "" || isNaN(amount)) {
-        alert("Please enter valid data.");
+    if(!includeLowercase && !includeUppercase && !includeNumbers && !includeSymbols){
+        alert("Please enter one checkbox");
         return;
     }
+    const newPassword=createPassword(length,includeUppercase,includeLowercase,includeSymbols,includeNumbers);
+    passwordInput.value=newPassword;
+    updateStrengthMeter(newPassword);
 
-    const transaction = {
-        id: Date.now(),
-        description,
-        amount
-    };
-
-    transactions.push(transaction);
-
-    saveTransactions();
-
-    updateSummary();
-    updateTransactionList();
-
-    transactionForm.reset();
 }
+function updateStrengthMeter(password){
+    const passwordLength = password.length;
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasNumbers = /[0-9]/.test(password);
+    const hasSymbols = /[!@#$%^&*()-_=+[\]{}|;:,.<>?]/.test(password);
 
-function saveTransactions(){
-    localStorage.setItem("transactions",JSON.stringify(transactions))
+    let strength=0;
+    if(passwordLength >=8) strength +=15; 
+    else if  (passwordLength >=16 ) strength += 40; 
+    
+    
+    if(hasUppercase) strength += 15;
+    if (hasLowercase) strength += 15;
+    if (hasNumbers) strength += 15;
+    if(hasSymbols) strength += 15;
+
+    strengthBar.style.width= strength +"%";
+    
+    let strengthLabelText="";
+    let barColor="";
+    if(strength <40){
+        barColor = "#fc8181";
+    strengthLabelText = "Weak";
+    }
+    else if (strength <70){
+barColor = "#fbd38d"; 
+    strengthLabelText = "Medium";
+    }
+    else {
+
+    barColor = "#68d391";
+    strengthLabelText = "Strong";
+  }
+  strengthBar.style.background=barColor;
+  strengthValue.textContent=strengthLabelText;
+
 }
+function createPassword(length,includeUppercase,includeLowercase,includeSymbols,includeNumbers){
+    let allCharacters="";
+    if(includeUppercase) allCharacters += uppercaseLetters;
 
-function updateTransactionList(){
-    transactionsList.innerHTML="";
-    const reversedTransactions=[...transactions].reverse();
-    reversedTransactions.forEach(transaction=>{
-        const transactionEl=createTransactionElement(transaction);
-        transactionsList.appendChild(transactionEl);
-    })
+    if(includeLowercase) allCharacters += lowercaseLetters;
+
+    if(includeNumbers) allCharacters += numberCharacters;
+
+    if (includeSymbols) allCharacters += symbolCharacters;
+
+    let password="";
+
+    for(let i=0;i<length ;i++){
+        const randomIndex = Math.floor(Math.random() * allCharacters.length);
+        password += allCharacters[randomIndex];
+    }
+    return password
 }
+copyButton.addEventListener("click", () => {
+  if (!passwordInput.value) return;
 
-function createTransactionElement(transaction){
-    const li=document.createElement("li");
-    li.classList.add("transaction");
-    li.classList.add(transaction.amount >= 0 ? "income":"expense");
-    li.innerHTML=`
-    <span>${transaction.description}</span>
-    <span>
-    $${transaction.amount.toFixed(2)}
-    <button class="delete-btn"
-    onclick="removeTransaction(${transaction.id})">
-    X </button>
-    </span>
+  navigator.clipboard
+    .writeText(passwordInput.value)
+    .then(() => showCopySuccess())
+    .catch((error) => console.log("Could not copy:", error));
+});
 
-    `
-    return li;
+
+function showCopySuccess() {
+  copyButton.classList.remove("far", "fa-copy");
+  copyButton.classList.add("fas", "fa-check");
+  copyButton.style.color = "#48bb78";
+
+  setTimeout(() => {
+    copyButton.classList.remove("fas", "fa-check");
+    copyButton.classList.add("far", "fa-copy");
+    copyButton.style.color = "";
+  }, 1500);
 }
-
-function removeTransaction(id){
-    transactions=transactions.filter(transaction => transaction.id !== id);
-
-    saveTransactions();
-    updateSummary();
-    updateTransactionList();
-}
-
-function updateSummary() {
-
-    const amounts = transactions.map(transaction => transaction.amount);
-
-    const total = amounts.reduce((acc, item) => acc + item, 0);
-
-    const income = amounts
-        .filter(item => item > 0)
-        .reduce((acc, item) => acc + item, 0);
-
-    const expense = amounts
-        .filter(item => item < 0)
-        .reduce((acc, item) => acc + item, 0);
-
-    balanceCurrent.textContent = `$${total.toFixed(2)}`;
-    incomeAmount.textContent = `$${income.toFixed(2)}`;
-    expenseAmount.textContent = `$${Math.abs(expense).toFixed(2)}`;
-}
-
-
-updateSummary();
-updateTransactionList();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // Save to localStorage
-// function saveTransactions() {
-//     localStorage.setItem("transactions", JSON.stringify(transactions));
-// }
-
-// // Update transaction list
-// function updateTransactionList() {
-//     transactionsList.innerHTML = "";
-
-//     const reversedTransactions = [...transactions].reverse();
-
-//     reversedTransactions.forEach(transaction => {
-//         const transactionEl = createTransactionElement(transaction);
-//         transactionsList.appendChild(transactionEl);
-//     });
-// }
-
-// // Create transaction element
-// function createTransactionElement(transaction) {
-
-//     const li = document.createElement("li");
-
-//     li.classList.add("transaction");
-//     li.classList.add(transaction.amount >= 0 ? "income" : "expense");
-
-//     li.innerHTML = `
-//         <span>${transaction.description}</span>
-
-//         <span>
-//             $${transaction.amount.toFixed(2)}
-//             <button class="delete-btn"
-//                 onclick="removeTransaction(${transaction.id})">
-//                 ✕
-//             </button>
-//         </span>
-//     `;
-
-//     return li;
-// }
-
-// // Remove transaction
-// function removeTransaction(id) {
-
-//     transactions = transactions.filter(transaction => transaction.id !== id);
-
-//     saveTransactions();
-
-//     updateSummary();
-//     updateTransactionList();
-// }
-
-// // Update balance, income, expense
-// function updateSummary() {
-
-//     const amounts = transactions.map(transaction => transaction.amount);
-
-//     const total = amounts.reduce((acc, item) => acc + item, 0);
-
-//     const income = amounts
-//         .filter(item => item > 0)
-//         .reduce((acc, item) => acc + item, 0);
-
-//     const expense = amounts
-//         .filter(item => item < 0)
-//         .reduce((acc, item) => acc + item, 0);
-
-//     balanceCurrent.textContent = `$${total.toFixed(2)}`;
-//     incomeAmount.textContent = `$${income.toFixed(2)}`;
-//     expenseAmount.textContent = `$${Math.abs(expense).toFixed(2)}`;
-// }
-
-// // Initial render
-// updateSummary();
-// updateTransactionList();
