@@ -1,0 +1,99 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    background:aliceblue;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.container{
+    width: 100%;
+    max-width: 420px;
+    background:#fff;
+    
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+.my-task{
+    background-color: blueviolet;
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+    color: white;
+}
+.my-task h1{
+    font-size: 30px;
+}
+.monday{
+    font-size: 16px;
+}
+.take-input{
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.take-input input{
+    width: 70%;
+    padding: 12px 14px;
+    border: 1px solid #c8c8c8;
+}
+.take-input input:focus {
+    border-color: blueviolet;
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.15);
+}
+.take-input input::placeholder {
+    color: #999;
+}
+.take-input button{
+    width: 42px;
+    border: none;
+    background: blueviolet;
+    color: white;
+    font-size: 24px;
+    border-radius: 10px;
+}
+.take-input button:hover {
+    background: #7020a8;
+}
+.buttons{
+    display: flex;
+    gap: 20px;
+    margin-left: 20px;
+}
+.buttons button{
+    border: none;
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+.result{
+    display: flex;
+    gap: 16px;
+    margin: 10px 20px;
+    flex-direction: column;
+}
+.result input:checked + span {
+    text-decoration: line-through;
+    color: gray;
+}
+.result input[type="checkbox"] {
+    accent-color: green;
+}
+.result button {
+    margin-left: auto;
+    border: none;
+    background: transparent;
+    color: red;
+    padding: 10px;
+    cursor: pointer;
+}
