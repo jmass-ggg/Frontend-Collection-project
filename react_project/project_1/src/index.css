@@ -1,0 +1,37 @@
+.container{
+  border-color: 20px;
+  border: solid black;
+  border-radius: 20px;
+  align-items: center;
+  padding: 20px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.container img{
+   width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.container button{
+  padding: 10px 40px; 
+  font-size: 30px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 20px;
+}
+
+.container button:hover{
+  background-color: rgb(129, 121, 121);
+}
+.card-row {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+}
