@@ -105,19 +105,22 @@ import Card from './components/Card.jsx'
   ];
   return (
     <div className='parent'>
-     {jobOpenings.map((elem, idx) => (
-      <div key={idx}>
-        <Card
-          company={elem.companyName}
-          datePosted={elem.datePosted}
-          post={elem.post}
-          tag1={elem.tag1}
-          tag2={elem.tag2}
-          brandLogo={elem.brandLogo}
-          pay={elem.pay}
-        />
+     {
+      jobOpenings.map((elem,idx)=>(
+        <div key={idx}>
+    <Card
+      companyName={elem.companyName}
+      datePosted={elem.datePosted}
+      post={elem.post}
+      tag1={elem.tag1}
+      tag2={elem.tag2}
+      brandLogo={elem.brandLogo}
+      pay={elem.pay}
+      location={elem.location}
+    />
   </div>
-))}
+      ))
+     }
     </div>
   )
 }

@@ -1,0 +1,21 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    background:rgb(0, 0, 0);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:50vh;   
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.container{
+    background-color: rgb(87, 87, 150);
+    padding: 20px 50px;
+    height: 400px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
