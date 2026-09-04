@@ -1,0 +1,28 @@
+.job-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.empty-message {
+  padding: 40px;
+  margin-top: 30px;
+  color: #6b7280;
+  background-color: rgb(56, 32, 32);
+  border: 2px dashed #3563a7;
+  border-radius: 14px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .job-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .job-list {
+    grid-template-columns: 1fr;
+  }
+}

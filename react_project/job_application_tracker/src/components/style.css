@@ -41,3 +41,53 @@
   margin-top: 6px;
   font-size: 1.5rem;
 }
+.jobAdd {
+  margin-top: 10px;
+  width: 760px;
+  background: #0f1724;
+  border-radius: 18px;
+  padding: 24px 28px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  color: #fff;
+}
+.jobForm{
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.formRow{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+}
+.field{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.field input,
+.field select{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  background: #0b1220;
+  color: #fff;
+  
+}
+.field select {
+  appearance: none;
+   background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+.jobAdd button{
+  border: none;
+  border-radius: 10px;
+  background: #1f6feb;
+  color: white;
+  font-weight: 700;
+  padding: 14px 18px;
+
+}

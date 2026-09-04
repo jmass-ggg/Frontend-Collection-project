@@ -1,0 +1,61 @@
+.job-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 22px;
+  background: #0f1724;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+  margin-top: 10px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+.job-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.job-card h2 {
+  margin-bottom: 6px;
+  color: #ced0d5;
+  font-size: 22px;
+}
+
+.job-card p {
+  color: #6b7280;
+  font-size: 15px;
+}
+.status{
+    margin-top: -10px;
+    font-size: 20px;
+}
+.job-card select{
+    width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  background: #0b1220;
+  color: #fff;
+    appearance: none;
+}
+button{
+    padding: 14px ;
+    background-color: rgb(218, 31, 31);
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+}
+button:hover{
+    background-color: rgb(229, 0, 0);
+}
