@@ -31,17 +31,27 @@ const App = () => {
         <textarea placeholder='Enter the description ....' value={description} onChange={(event)=>setDescription(event.target.value)} />
           <button type='submit'>Submit</button>
       </form>
-      <div className='result'>
-        <h2>Result</h2>
-        {
-          notes.map((note)=>(
-             <article key={note.id}>
-            <h2>Title :- <span>{note.title}</span> </h2>
-            <p>description :-  <span>{note.description}</span> </p>
-        </article>
-          ))
-        }
-      </div>
+      <div className="result">
+  <h2>Result</h2>
+
+  <div className="notes-grid">
+    {notes.map((note, index) => (
+      <article className="note-card" key={note.id}>
+        <h3>Note {index + 1}</h3>
+
+        <div className="note-row">
+          <strong>Title</strong>
+          <span>{note.title}</span>
+        </div>
+
+        <div className="note-row">
+          <strong>Description</strong>
+          <span>{note.description}</span>
+        </div>
+      </article>
+    ))}
+  </div>
+</div>
     </div>
   )
 }
