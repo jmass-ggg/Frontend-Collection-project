@@ -1,0 +1,126 @@
+.dashboard-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.new-task-button{
+  padding: 10px;
+  border-radius: 15px;
+  width: 100px;
+  border: none;
+  background-color: #7cbb9e;
+  box-shadow: 0 16px 50px rgb(0 0 0 / 20%);
+  cursor: pointer;
+}
+.new-task-button:hover{
+    background-color: #6bc69c;
+}
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgb(0 0 0 / 35%);
+  animation: fade-in 180ms ease-out;
+}
+
+.task-modal {
+  position: relative;
+  width: min(420px, calc(100% - 32px));
+  padding: 24px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 16px 50px rgb(0 0 0 / 20%);
+  animation: modal-pop 220ms ease-out;
+}
+
+.task-modal h2 {
+  margin-top: 0;
+}
+
+.task-modal input,
+.task-modal select {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 12px 0;
+  padding: 11px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.close-button{
+  position: absolute;
+  right: 19px;
+  top:16px;
+  background-color: white;
+  border: none;
+  color: red;
+  font-size: 24px;
+
+}
+.add-btn{
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 20px;
+  margin-top: 20px;
+  color: white;
+  background-color: #115939;
+  cursor: pointer;
+}
+.status{
+  
+  padding: 20px;
+  border-radius: 10px;
+  display: grid;
+  gap: 20px;
+}
+.total-tasksCompleted{
+  border: 1px solid #d8d8d8;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 16px 90px rgba(117, 114, 114, 0.2);
+}
+.total-tasksCompleted h2{
+  font-size: 20px;
+  color:  #4b4949;
+  font-weight: bold;
+  
+}
+.total-tasksNotCompleted{
+  border: 1px solid #d8d8d8;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 16px 90px rgba(117, 114, 114, 0.2);
+}
+.total-tasksNotCompleted h2{
+  font-size: 20px;
+  color:  #4b4949;
+  font-weight: bold;
+  
+}
+.total-tasksPending{
+  border: 1px solid #d8d8d8;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 16px 90px rgba(117, 114, 114, 0.2);
+  
+}
+.total-tasksPending h2{
+  font-size: 20px;
+  color:  #4b4949;
+  font-weight: bold;
+  
+}

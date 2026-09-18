@@ -46,3 +46,40 @@
     background: transparent;
     cursor: pointer;
 }
+.search{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+  border: 1px solid #e2e2e2;
+  border-radius: 6px;
+  background: #f8f8f8;
+}
+.search span {
+  color: #888;
+}
+.search input  {
+  outline: 0;
+    background-color: transparent;
+    border: 0;
+    font-size: 14px;
+
+}
+.search-status{
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.search-status button{
+   padding: 8px 14px;
+   border: 1px solid #ddd;
+   border-radius: 5px;
+  background: white;
+  color: #333;
+  cursor: pointer;
+}
+.filter-buttons button.active {
+    border-color: #08c765;
+  background: #08c765;
+  color: white;
+}
