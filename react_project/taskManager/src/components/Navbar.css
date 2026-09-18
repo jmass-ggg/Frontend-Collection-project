@@ -1,0 +1,48 @@
+.navbar{
+    height: 64px;
+    padding: 0 32px;
+    align-items: center;
+    gap: 32px;
+    display: flex;
+    background: white;
+    font-family: Arial, sans-serif;
+}
+.brand{
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+.brand h2{
+    margin: 0;
+    font-size: 16px;
+    color: #202124;
+}
+.logo{
+    background-color: forestgreen;
+    border-radius: 50%;
+    place-items: center;
+    color: white;
+    width: 22px;
+  height: 22px;
+  font-size: 14px;
+  font-weight: bold;
+  display: grid;
+}
+.nav-links{
+    display: flex;
+    gap: 8px;
+}
+.nav-links a{
+    padding: 9px 12px;
+    text-decoration: 20px;
+    font-size: 13px;
+    border-radius: 4px;
+    color: #8b8f98;
+}
+.dark-mode{
+    margin-left: auto;
+    color: #8b8f98;
+    font-size: 13px;
+    background: transparent;
+    cursor: pointer;
+}
